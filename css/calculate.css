@@ -1,13 +1,16 @@
 html{
 	height: 100%;
-	font-size: 62.5%;
 }
 body{
 	width: 375px;
 	height: 100%;
 	margin: 0 auto;
-	font-size: 1em;
 	background-color: #000;
+	overflow-y: hidden;
+	transition: width 0.5s;
+	-moz-transition: width 0.5s; /* Firefox 4 */
+	-webkit-transition: width 0.5s; /* Safari 和 Chrome */
+	-o-transition: width 0.5s; /* Opera */
 }
 ul,li{
 	margin: 0;
@@ -17,55 +20,64 @@ ul,li{
 
 /*顶部和整体部分*/
 #cal_container{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	width: 100%;
-	min-height: 630px;
+	height: 100%;
 	box-sizing: border-box;
 	padding-top: 20px;
-	margin:0 auto;
-	border-top: 0.1em solid #000;
-	border-bottom: 0.1em solid #000;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
 	background-color: rgb(228,228,228);
 }
 #top_container{
-	/*height:30%;*/
-	height: 195px;
 	position: relative;
+	height: 27%;
 	padding: 1px 0 3px 0;
-	box-sizing: border-box;
 	margin: 0 2.65%;
+	box-sizing: border-box;
 	background-color: rgb(70,72,69);
 	border-radius: 7px;
 	box-shadow: 2px -2px 0 2px rgb(195,192,189),
 			-2px 2px 0 2px rgb(195,193,189);
-	-moz-transition:all 0.4s;
-	-webkit-transition: all 0.4s;
-	transition: all 0.4s;
+	transition: height 0.5s;
+	-moz-transition: height 0.5s; /* Firefox 4 */
+	-webkit-transition: height 0.5s; /* Safari 和 Chrome */
+	-o-transition: height 0.5s; /* Opera */
 }
 #save_result{
 	position: relative;
-	height: 170px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
 	height: 90%;
+	padding-right: 3px;
 	margin: 4px 5px 15px 5px;
 	border: none;
 	text-align: right;
 	background-color: #cddad3;
-	-webkit-transition: all 0.4s;
-	transition: all 0.4s;
+	transition: height 0.5s;
+	-moz-transition: height 0.5s; /* Firefox 4 */
+	-webkit-transition: height 0.5s; /* Safari 和 Chrome */
+	-o-transition: height 0.5s; /* Opera */
 }
 .expression{
-	position: absolute;
-	top: 70px;
 	width: 100%;
-	height: 50px;
-	font-size: 2.5em;
-	font-weight: 500;
+	height: 60%;
+	box-sizing: border-box;
+	padding-top: 55px;
+	font-size: 26px;
+	font-weight: 600;
+	color: #000;
+	text-align: right;
 }
 .result{
-	position: absolute;
-	bottom: 0;
 	width: 100%;
-	font-size: 5.5em;
+	height: 40%;
+	font-size: 50px;
 	font-weight: 600;
+	text-align: right;
 }
 .icon{
 	position: absolute;
@@ -92,7 +104,7 @@ ul,li{
 
 /*历史记录部分*/
 .history_item{
-	font-size: .5em;
+	font-size: 24px;
 	font-weight: 500;
 	color: #000;
 	line-height: 1.5em;
@@ -101,29 +113,37 @@ ul,li{
 
 /*按键部分*/
 #btn{
+	display: flex;
+	flex-wrap: wrap;
+	align-content: space-between;
 	width: 100%;
-	height: 70%;
-	padding-top: 25px;
+	height: 73%;
+	padding-top: 15px;
 	box-sizing: border-box;
 }
 .row{
+	display: flex;
+	justify-content: space-between;
 	width: 100%;
 	height: 20%;
 	padding: 15px 0;
+	box-sizing: border-box;
 }
 .row span{
-	font-size: 3em;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+    justify-content: center;
 	width:19%;
+	height: 100%;
 	margin:0 3%;
 	box-sizing: border-box;
+	font-size: 35px;
+	font-weight: 400;
 	line-height: 1.5em;
 	text-align: center;
 	border-radius: 50%;
 	border: 1px solid rgb(169,171,171);
 	background-color: rgb(242,242,242);
-	/*font-size: 20px;*/
-	font-weight: 400;
 	box-shadow: 3px 3px 2px 2px rgb(198,198,198),
 			-3px -3px 2px 1px rgb(198,198,198);
 	cursor: pointer;
@@ -137,16 +157,45 @@ ul,li{
 }
 
 /*手机端的适配*/
-@media screen and (max-width: 768px){
+@media screen and (max-width: 550px){
 	body{
-		width: 100%
+		min-width: 320px;
+		width: 100%;
 	}
 	#cal_container{
 		width: 100%;
-		min-width: 375px;
-		height: 100%;
 	}
-	.row{
-		padding: 0;
-	}
+}
+
+
+/*滚动条整体部分*/
+.demo::-webkit-scrollbar{
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+/*滚动条两端的箭头*/
+.demo::-webkit-scrollbar-button{
+  display: none;
+}
+/*经测试好像并不能控制什么*/
+.demo::-webkit-scroll-track{
+  display: none;
+}
+/*滚动条内侧部分 去掉*/
+.demo::-webkit-scrollbar-track-piece {
+  display: none;
+}
+/*滚动条中可以拖动的那部分*/
+.demo::-webkit-scrollbar-thumb{
+  background-color: #837d7d;
+  border-radius: 4px;
+}
+/*变角部分*/
+.demo::-webkit-scrollbar-corner {
+  display: none;
+}
+.demo::-webkit-resizer{
+  display: none;
 }
