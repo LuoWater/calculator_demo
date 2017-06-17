@@ -12,8 +12,7 @@
 
 虽然还有很多的bug。。。还在完善当中
 
-#### 目前效果图：
-![](./result_img/1.png) ![](./result_img/2.png) 
+页面展示链接：https://luowater.github.io/calculator_demo/
 
 
 
